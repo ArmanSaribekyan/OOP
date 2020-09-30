@@ -1,17 +1,19 @@
 # Задача 2
 
 class Album:
-    album_name = ''
-    group = ''
-    track_list = ''
+
+    def __init__(self, group, album_name, track_list):
+        self.group = group
+        self.album_name = album_name
+        self.track_list = track_list
 
     def get_tracks(self, album):
         for tracks in album:
-            tracks.show()
+            print(tracks)
 
     def add_track(self, album, track_name, track_duration):
-        New_track = Track(track_name, track_duration)
-        album.track_list.append(New_track)
+        new_track = Track(track_name, track_duration)
+        album.track_list.append(new_track)
 
     def get_duration(self, album):
         num_ = 0
@@ -19,40 +21,41 @@ class Album:
             num_ += tracks.track_duration
         print(f'Длительность альбома: {num_} минут')
 
+    def __str__(self):
+        return f'Name group: {self.group}\nName album: {self.album_name}\n'\
+               f'Tracks:\n' \
+               f'        {self.track_list[0]}\n' \
+               f'        {self.track_list[1]}\n' \
+               f'        {self.track_list[2]}'
+
 
 class Track:
+
     def __init__(self, track_name, track_duration):
         self.track_name = track_name
         self.track_duration = int(track_duration)   # minute
 
-    def show(self):
-        print(f'{self.track_name} - {self.track_duration} min')
+    def __str__(self):
+        return f'{self.track_name} - {self.track_duration} min'
+
+    def __lt__(self, other):
+        return self.track_duration < other.track_duration
+
 
 track_1 = Track('Revolt', 4)
 track_2 = Track('Hurricane', 5)
 track_3 = Track('Feel', 4)
 
-# track_1.show()
-# track_2.show()
-# track_3.show()
+# print(track_1)
 
 track_4 = Track('Anti-Social', 3)
 track_5 = Track('Haunt me', 4)
 track_6 = Track('The Guilty Party', 5)
 
-# track_4.show()
-# track_5.show()
-# track_6.show()
+# print(track_4)
 
-album_1 = Album()
-album_1.album_name = 'You Are We'
-album_1.group = 'While She Sleeps'
-album_1.track_list = [track_1, track_2, track_3]
-
-album_2 = Album()
-album_2.album_name = 'You Are We'
-album_2.group = 'While She Sleeps'
-album_2.track_list = [track_4, track_5, track_6]
+album_1 = Album('While She Sleeps', 'You Are We', [track_1, track_2, track_3])
+album_2 = Album('While She Sleeps', 'So What?', [track_4, track_5, track_6])
 
 # album_1.add_track(album_1, 'You Are We', 5)
 #
@@ -60,3 +63,7 @@ album_2.track_list = [track_4, track_5, track_6]
 
 album_1.get_duration(album_1.track_list)
 album_2.get_duration(album_2.track_list)
+
+# print(track_1 < track_5)
+
+print(album_1)

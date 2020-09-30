@@ -1,4 +1,5 @@
 # ЗАДАЧА 1
+
 class Animal:
     geolocation = 'Ферма Дядюшки Джо'
 
@@ -8,14 +9,14 @@ class Animal:
 
     def feed(self, food):
         self.weight += food    # кг. еды
-        print('Животное поело')
+        print(f'{self.name}: поел(а)')
 
 class Bird(Animal):
     food = ("семена", "зерна")
 
     def collect_eggs(self, eggs):
         self.weight -= 0.08 * eggs    # кол-во яиц
-        print('Нужное количество яиц собрано')
+        print(f'{self.name}: яйца собраны')
 
 class Goose(Bird):
     voice = 'honk'
@@ -27,28 +28,26 @@ class Duck(Bird):
     voice = 'quack-quack'
 
 
-class Cloven_hoofed(Animal):
+class ClovenHoofed(Animal):
     food = ("трава", "сено")
 
     def milky(self, milk_volume):
-        if isinstance(self, Sheep):
-            print('Дядюшка Джо не доит овец')
-        else:
-            self.weight -= milk_volume  # литров молока
-            print('Животное подоили')
+        self.weight -= milk_volume  # литров молока
+        print(f'{self.name}: животное подоили')
 
-class Cow(Cloven_hoofed):
+class Cow(ClovenHoofed):
     voice = 'moo'
 
-class Sheep(Cloven_hoofed):
+class Sheep(ClovenHoofed):
     voice = 'baa'
 
     def cut_wool(self, wool):
         self.weight -= wool    # кг. шерсти
-        print('Шерсть пострижена')
+        print(f'{self.name}: пострижен')
 
-class Goat(Cloven_hoofed):
+class Goat(ClovenHoofed):
     voice = 'mee'
+
 
 seriy = Goose('Серый', 9)
 beliy = Goose('Белый', 10)
@@ -69,7 +68,7 @@ farm = (seriy, beliy, ko_ko, kukarekoo, kryakva,
 num_ = 0
 for animals in farm:
     num_ += animals.weight
-print(f'Общий вес животных на ферме: {num_}')
+print(f'Общий вес животных на ферме: {num_} кг')
 
 # Вывести название самого тяжелого животного.
 max = 0
@@ -78,27 +77,26 @@ for animal in farm:
     if animal.weight > max:
         max = animal.weight
         heavy_animal = animal
-print(f'Самое тяжелое животное на ферме: {heavy_animal.name}')
+print(f'Самое тяжелое животное на ферме: {heavy_animal.name}\n')
 
-# Задание со второго урока:
+# Задание 2:
 # Используя методы из родительского класса,
 # вызывать их в цикле у списка всех животных.
 
 for animal in farm:
     animal.feed(1)
-for animal in farm:
-    print(animal.weight)
+    print(f'теперь его вес: {animal.weight} кг')
+print()
 
 birds_on_the_farm = [seriy, beliy, ko_ko, kukarekoo, kryakva]
 
 for animal in birds_on_the_farm:
     animal.collect_eggs(5)
-for animal in birds_on_the_farm:
-    print(animal.weight)
+    print(f'теперь его вес: {animal.weight} кг')
+print()
 
-Cloven_hoofed_on_the_farm = [manka, barashek, kudryaviy, roga, kopita]
+cloven_hoofed_on_the_farm = [manka, barashek, kudryaviy, roga, kopita]
 
-for animal in Cloven_hoofed_on_the_farm:
+for animal in cloven_hoofed_on_the_farm:
     animal.milky(2)
-for animal in Cloven_hoofed_on_the_farm:
-    print(animal.weight)
+    print(f'теперь его вес: {animal.weight} кг')
