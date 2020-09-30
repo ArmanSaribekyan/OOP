@@ -24,7 +24,7 @@ class Album:
     def __str__(self):
         tracks = ''
         for track in self.track_list:
-            tracks += f'\n\t{str(track)}'
+            tracks += f'\n\t\t{str(track)}'
         return f'Name group: {self.group}\nName album: {self.album_name}\n'\
                f'Tracks:{tracks}'
 
@@ -67,4 +67,4 @@ album_2.get_duration(album_2.track_list)
 
 # print(track_1 < track_5)
 
-print(album_1)
+print(album_2)

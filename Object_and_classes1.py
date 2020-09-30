@@ -96,6 +96,7 @@ for animal in birds_on_the_farm:
 print()
 
 cloven_hoofed_on_the_farm = [manka, barashek, kudryaviy, roga, kopita]
+
 for animal in cloven_hoofed_on_the_farm:
     animal.milky(2)
     print(f'теперь его вес: {animal.weight} кг')
