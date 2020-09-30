@@ -22,11 +22,12 @@ class Album:
         print(f'Длительность альбома: {num_} минут')
 
     def __str__(self):
+        tracks = ''
+        for track in self.track_list:
+            tracks += f'\n\t{str(track)}'
         return f'Name group: {self.group}\nName album: {self.album_name}\n'\
-               f'Tracks:\n' \
-               f'        {self.track_list[0]}\n' \
-               f'        {self.track_list[1]}\n' \
-               f'        {self.track_list[2]}'
+               f'Tracks:{tracks}'
+
 
 
 class Track:
